@@ -14,3 +14,8 @@ Be able to like posted items, post comments on items, and search for items.
 User Schema will include: username, email, and password.
 
 Item Schema: title, description, image, and user id.
+
+
+
+Assisgnments:
+[./readImage/assignments.jpg]
