@@ -7,8 +7,8 @@ const app            = express();
 
 require('./db/db');
 
-const itemsController = require('./controllers/items');
-// const usersController = require('./controllers/users');
+// const itemsController = require('./controllers/items');
+const usersController = require('./controllers/users');
 
 
 // app.use(session({
@@ -25,8 +25,8 @@ const itemsController = require('./controllers/items');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
 
-app.use('/items', itemsController);
-// app.use('/users', usersController);
+// app.use('/items', itemsController);
+app.use('/users', usersController);
 
 app.get('/', (req, res) => {
   res.render('index.ejs', {
