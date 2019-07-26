@@ -7,21 +7,20 @@
     </head>
     <body>
     <header>
-        <h1>Users Index Page</h1>
         <nav>
-            <div>
-                <a href="/">Home Page</a>
-            </div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/items">Cool Stuff</a></li>
+                <li><a href="/users">Owners</a></li>
+            </ul>
         </nav>
-      <nav>
+            <h1>Users Index Page</h1>
+        <nav>
         <ul>
             Users:
             <li>
             <% for(let i = 0; i < users.length; i++){ %>
                 <a href="/users/<%=users[i]._id%>"><%=users[i].username%></a>
-                <form action="/users/<%=users[i]._id%>?_method=DELETE" method="POST">
-                <input type="submit" value="DELETE THIS USER"/>
-                </form>
             <%}%>
             </li>
         </ul>

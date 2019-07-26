@@ -6,29 +6,22 @@
   </head>
   <body>
     <header>
-       <nav>
-        <ul>
-          <li>
-            <a href="/">Home</a>
-          </li>
-        </ul>
-      </nav>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/items">Cool Stuff</a></li>
+                <li><a href="/users">Owners</a></li>
+            </ul>
+        </nav>
+      <h2>New User Registration</h2>
     </header>
     <main>
-
-         <h2>Login</h2>
-      <form action="/users/login" method="POST">
-        <input type="text" name="username">
-        <input type="password" name='password'>
-        <button type='submit'>Login</button>
-      </form>
-
-        <h2>Registre</h2>
-      <form action="/users/register" method="POST">
-        User-Name: <input type="text" name="username"><br/>
+      <form action="/users" method="POST">
+        User Name: <input type="text" name="username"><br/>
         Email:     <input type="email" name="email"><br/>
         Password:  <input type="password" name="password"><br/>
-        <input type='submit' value="registre"/>
+        <input type='submit' value="Register"/>
+
       </form>
 
     </main>

@@ -9,22 +9,22 @@
 </head>
     <body>
         <header>
-            <nav>
-                <ul>
-                    <li><a href='/'>Home</a></li>
-<!--                     <li><a href='/items'>Cool Stuff</a></li>
-                    <li><a href='/users'>Owners</a></li> -->
-                </ul> 
-            </nav>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/items">Cool Stuff</a></li>
+                <li><a href="/users">Owners</a></li>
+            </ul>
+        </nav>
         </header>
         <main>
             <section>
                 <li>
-                    Name: <%= user.name%> 
+                    Name: <%=user.username%> 
                 </li>
                 <li>
                     <% items.forEach(function(item, index) {%> <!-- items is the array of objects --> 
-                    <img src="<%=items.img%>"></a>
+                    <a href="/items/<%=item._id%>"><img src="<%=item.img%>"></a>
                     <%})%>
                 </li>
             </section>
@@ -32,7 +32,7 @@
                 <a href="/users/<%=user._id%>/edit">Edit Account</a>
             </section>
             <section>
-                <form action='/items/<%=item._id%>?_method=DELETE' method='post'>
+                <form action='/items/<%=items._id%>?_method=DELETE' method='post'>
                     <input type="submit" value="Delete your Account">
                 </form>
             </section>
