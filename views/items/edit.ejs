@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/items">Cool Stuff</a></li>
+                <li><a href="/users">Owners</a></li>
+            </ul>
+        </nav>
+      <h1>Edit Information</h1> 
+    </header>
+    <main>
+        <h2> Item Info:</h2>
+            <form action="/items/<%=item._id%>?_method=PUT" method="post">
+                <input type="text" name="title" value="<%=item.title%>"/><br/>
+                <input type="text" name="description" value="<%=item.description%>"/><br/>
+                <input type="text" name="img" value="<%=item.img%>"/><br/>
+                <input type="submit" value="Update Item!"/>
+            </form>
+    </main>
+  </body>
+</html>
