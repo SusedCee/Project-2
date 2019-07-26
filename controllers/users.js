@@ -16,11 +16,17 @@ router.get('/', async (req,res) => {
     }
 })
 
+//ADD A NEW USER
+router.get('/new', async (req,res) => {
+    res.render('users/new.ejs')
+})
+
+
 //EDIT A USER (EDIT.EJS)
 router.get('/:id/edit', async (req,res) => {
     try{
         const user = await User.findById(req.params.id)
-        res.render('./users/edit.ejs', {
+        res.render('users/edit.ejs', {
             user: user
         })
     }catch(err){
@@ -31,6 +37,17 @@ router.get('/:id/edit', async (req,res) => {
 
 router.put('/:id', async (req,res) => {
     try{
+        const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        res.redirect(`users/${req.params.id}`)
+    }catch(err){
+        console.log(err)
+        res.send(err)
+    }
+})
+
+
+router.post('/', async (req,res) => {
+    try{
         const newUser = await User.create(req.body)
         res.redirect('/users/')
     }catch(err){
@@ -38,9 +55,6 @@ router.put('/:id', async (req,res) => {
         res.send(err)
     }
 })
-
-//ADD A NEW USER
-
 
 
 module.exports = router
