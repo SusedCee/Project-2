@@ -4,7 +4,8 @@
   "description": "Sused, Sandra and Michael Project",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,6 @@
     "express-session": "^1.16.2",
     "method-override": "^3.0.0",
     "mongoose": "^5.6.6"
-  }
+  },
+  "devDependencies": {}
 }
