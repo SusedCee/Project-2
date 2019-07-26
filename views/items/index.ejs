@@ -18,11 +18,7 @@
         <ul>
             <%items.forEach(function(item,index){ %>
             <li>
-                <a href="/items/<%=item._id%>"><%=item.title%></a>
-                <a href="/items/<%=item._id%>"><img src='/items/<%=item.img%>'></a>
-                <form method='POST' action='/items/<%=item._id%>?_method=DELETE'>
-                    <input type="submit" name='' value="DELETE"/>
-                </form>
+                <a href="/items/<%=item._id%>"><img src='<%=item.img%>'></a>
             </li>
             <% }) %>
         </ul>
