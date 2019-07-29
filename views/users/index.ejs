@@ -3,28 +3,43 @@
     <head>
         <meta charset="utf-8">
         <title></title>
-        <link rel="stylesheet" href="/css/app.css">
+        <link rel="stylesheet" href="/styles/main.css">
+        <link href="https://fonts.googleapis.com/css?family=Aldrich|DM+Serif+Display&display=swap" rel="stylesheet">
     </head>
     <body>
-    <header>
+    <div id="main">
         <nav>
+            <img src="https://d1xoxjvid3rlgu.cloudfront.net/wp-content/uploads/2018/07/icon-camera.png" width="70" height="70" id="logo">
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/items">Cool Stuff</a></li>
                 <li><a href="/users">Owners</a></li>
             </ul>
+            <ul class="registerlogin">
+                <li><a href="/users/new"><img src="http://cdn.onlinewebfonts.com/svg/img_568656.png" width="70" height="70" id="logo">Register</a></li>
+                <li><a href="/users/login"><img src="https://image.flaticon.com/icons/png/512/16/16036.png" width="70" height="70" id="logo">Login</a></li>
+            </ul>
+
         </nav>
-            <h1>Users Index Page</h1>
-        <nav>
-        <ul>
-            Users:
-            <li>
+    </div>
+
+    <h1 class="heading">Users Page</h1>
+
+    <div>
+        <ul id="list">
+            <li id="item">
             <% for(let i = 0; i < users.length; i++){ %>
-                <a href="/users/<%=users[i]._id%>"><%=users[i].username%></a>
+            <a href="/users/<%=users[i]._id%>"><%=users[i].username%></a>
             <%}%>
             </li>
         </ul>
-      </nav>
-    </header>
+    </div>
+ 
     </body>
+    <footer>
+        <div class="clearfix">
+            <p class="copyright">Copyright 2019</p>
+            <p class="message">Created with ♥ by Keep or Lose It</p>
+        </div>
+    </footer>
 </html>

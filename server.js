@@ -24,6 +24,7 @@ const usersController = require('./controllers/users');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
+app.use(express.static('public'));
 
 app.use('/items', itemsController);
 app.use('/users', usersController);
