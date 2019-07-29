@@ -22,14 +22,25 @@ const usersController = require('./controllers/users');
 //   // until the user has logged in to an app
 // }));
 
+app.use(session({
+  secret: 'keepitsecret',
+  resave: false,
+  saveUninitialized: false
+}))
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
+
+app.use((req,res, next)=> {
+  res.locals.currentUser = req.session.userId
+  next();
+})
 
 app.use('/items', itemsController);
 app.use('/users', usersController);
 
 app.get('/', (req, res) => {
+  console.log(`a visit from ${req.session.userId}`)
   res.render('index.ejs', {
   });
 });
