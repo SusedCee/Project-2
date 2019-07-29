@@ -21,11 +21,11 @@ router.get('/new', async (req,res) => {
 
 router.get('/:id', async (req,res) => {
     try{
-        const foundItem = Item.findById(req.params.id)
+        const foundItem = await Item.findById(req.params.id)
         {
-            const foundUser = User.findById(foundItem.userId)
+            console.log(foundItem)
+            const foundUser = await User.findById(foundItem.user)
             {
-                console.log(foundUser);
                 res.render('items/show.ejs', {
                     item: foundItem,
                     user: foundUser
@@ -51,9 +51,12 @@ router.get('/:id/edit', async (req,res) => {
 })
 
 router.post('/', async (req,res) => {
+    console.log(req.session.userId)
     try{
+        console.log(req.body)
+        req.body.user= req.session.userId
         const newItem = await Item.create(req.body)
-        res.redirect('/items/')
+        res.redirect('/items')
     }catch(err){
         console.log(err)
         res.send(err)
@@ -79,5 +82,6 @@ router.put('/:id', async (req,res) => {
         res.send(err)
     }
 })
+
 
 module.exports = router
