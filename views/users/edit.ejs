@@ -2,21 +2,27 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
     <link rel="stylesheet" href="/styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Aldrich|DM+Serif+Display&display=swap" rel="stylesheet">
+    <title>Edit a User Profile</title>
   </head>
   <body>
     <header>
-      <h1>Edit User Information</h1> 
+      <%- include ../partials/_navbar.ejs %>
     </header>
+
     <main>
-        <h2> User Info:</h2>
-            <form action="/users/<%=user._id%>?_method=PUT" method="post">
-                Username: <input type="text" name="username" value="<%=user.username%>"/><br/>
-                Email: <input type="text" name="email" value="<%=user.email%>"/><br/>
-                Password: <input type="text" name="password" value="<%=user.password%>"/><br/>
-                <input type="submit" value="Update User Information"/>
-            </form>
+        <h1 class="heading">Edit Profile</h2>
+        <form action="/users/<%=user._id%>?_method=PUT" method="post">
+          Username: <input type="text" name="username" value="<%=user.username%>"/><br/>
+          Email: <input type="text" name="email" value="<%=user.email%>"/><br/>
+          Password: <input type="text" name="password" value="<%=user.password%>"/><br/>
+          <input type="submit" value="Update User Information"/>
+        </form>
     </main>
   </body>
+
+  <footer>
+    <%- include ../partials/_footer.ejs %>
+  </footer>
 </html>

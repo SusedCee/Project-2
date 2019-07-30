@@ -2,27 +2,20 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Aldrich|DM+Serif+Display&display=swap" rel="stylesheet">
+    <title>Home Page</title>
   </head>
   <body>
     <header>
-      <h1>Love it or Loss It</h1>
-      <nav>
-        <ul>
-          <li>
-            <a href="/users">Users</a>
-          </li>
-          <li>
-            <a href="/items">Cool Stuff</a>
-          </li>
-          <li> 
-            <a href="/users/login">Login</a>
-          </li>
-          <li>
-            <a href="/users/new">Register</a>
-          </li>
-        </ul>
-      </nav>
+      <%- include ./partials/_navbar.ejs %>
     </header>
+    <main>
+      <h1>Love it or Loss It</h1>
+    </main>
   </body>
+  
+  <footer>
+    <%- include ./partials/_footer.ejs %>
+  </footer>
 </html>

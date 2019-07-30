@@ -2,20 +2,16 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+      <link rel="stylesheet" href="/styles/main.css">
+      <link href="https://fonts.googleapis.com/css?family=Aldrich|DM+Serif+Display&display=swap" rel="stylesheet">
+    <title>Add New Items</title>
   </head>
   <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="/">Home Page</a></li>
-                <li><a href="/items">Cool Stuff</a></li>
-                <li><a href="/users">Owners</a></li>
-            </ul>
-        </nav>
-        <h1>Add An Item</h1>
+      <%- include ../partials/_navbar.ejs %>
     </header>
     <main>
+      <h1>Add An Item</h1>
       <form action="/items" method="post">
         Title: <br/><input type="text" name="title" /><br/>
         Description: <br/><input type="text" name="description" /><br/>
@@ -25,4 +21,7 @@
       </form>
     </main>
   </body>
+  <footer>
+    <%- include ../partials/_footer.ejs %>
+  </footer>
 </html>
