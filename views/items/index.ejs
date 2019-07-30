@@ -7,25 +7,31 @@
         <title>Items Index Page</title>
     </head>
     <body>
-        <header>
-        <%- include ../partials/_navbar.ejs %>
-        </header>
 
-        <main>
-            <h1 class="heading">Cool Stuff Index Page</h1>
-            <div>
-                <ul>
-                <%items.forEach(function(item,index){ %>
-                    <li>
-                    <a href="/items/<%=item._id%>"><img src='<%=item.img%>'></a>
-                    <% }) %>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <a href="/items/new">Add a new item!</a>
-            </div>
-        </main>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home Page</a></li>
+          <li><a href="/users">Owners</a></li>
+        </ul>
+      </nav>
+    </header>
+    <h1>Cool Stuff Index Page</h1>
+        <ul>
+            <%items.forEach(function(item,index){ %>
+            <li>
+                <a href="/items/<%=item._id%>"><img src='<%=item.img%>'></a>
+            </li>
+            <% }) %>
+        </ul>
+        <%if(session.logged) {%>
+        <nav>
+             <form action='/items/new'>
+                    <input type="submit" value="Add a new item!">
+                </form>
+        </nav>
+        <%}%>
+
     </body>
 
     <footer>
