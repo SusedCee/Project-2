@@ -2,30 +2,28 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Registration</title>
     <link rel="stylesheet" href="/styles/main.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Aldrich|DM+Serif+Display&display=swap" rel="stylesheet">
+    <title>New User Page</title>
   </head>
+
   <body>
     <header>
-        <nav>
-            <ul class="bar">
-                <li class="topbar"><a href="/">Home</a></li>
-                <li class="topbar"><a href="/items">Cool Stuff</a></li>
-                <li class="topbar"><a href="/users">Owners</a></li>
-            </ul>
-        </nav>
-      <h2>New User Registration</h2>
+      <%- include ../partials/_navbar.ejs %>
     </header>
+
     <main>
+      <h1>Register</h1>
       <form action="/users" method="POST">
-        User Name: <input type="text" name="username"><br/>
-        Email:     <input type="email" name="email"><br/>
-        Password:  <input type="password" name="password"><br/>
+        User Name:<br/> <input type="text" name="username"><br/>
+        Email:<br/>     <input type="email" name="email"><br/>
+        Password:<br/>  <input type="password" name="password"><br/>
         <input type='submit' value="Register"/>
-
       </form>
-
     </main>
   </body>
+  
+    <footer>
+    <%- include ../partials/_footer.ejs %>
+    </footer>
 </html>
