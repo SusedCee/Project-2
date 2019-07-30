@@ -11,20 +11,22 @@
       <%- include ../partials/_navbar.ejs %>
     </header>
         <main>
+        <div>
             <section>
                 <h1><%=item.title%></h1>
-                <img src="<%=item.img%>">
-                <p><%=item.description%></p>
-                 <p>Uploaded by: <%=user.username%></p>
+                <img class="show" src="<%=item.img%>">
+                <p class="show"><%=item.description%></p>
+                 <p class="show">Uploaded by: <%=user.username%></p>
             </section>
+        </div>
 
             <%if(item.user == session.userId) {%>
-            <section>
+            <section class="show">
                 <form action='/items/<%=item._id%>/edit'>
                     <input type="submit" value="Edit Your Item">
                 </form>
             </section>
-            <section>
+            <section class="show">
                 <form action='/items/<%=item._id%>?_method=DELETE' method='post'>
                     <input type="submit" value="Trash Your Item">
                 </form>
