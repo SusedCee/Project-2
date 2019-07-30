@@ -1,24 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel='stylesheet' href=''>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
-    <title>User Show Page</title>
-    <link rel="stylesheet" href="/styles/main.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/styles/main.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+        <title>User Show Page</title>
+    </head>
     <body>
         <header>
-        <nav>
-            <ul class="bar">
-                <li class="topbar"><a href="/">Home</a></li>
-                <li class="topbar"><a href="/items">Cool Stuff</a></li>
-                <li class="topbar"><a href="/users">Owners</a></li>
-            </ul>
-        </nav>
+            <%- include ../partials/_navbar.ejs %>
         </header>
+
         <main>
             <section>
                     <h2><%=user.username%>'s Cool Stuff</h2>
@@ -44,4 +36,8 @@
             <%}%>
         </main>
     </body>
+
+    <footer>
+        <%- include ../partials/_footer.ejs %>
+    </footer>
 </html>
