@@ -32,8 +32,8 @@ nav ul {
 	padding-right: 0;
 }
 
-nav ul li {
-	list-style-type: none;
+nav, ul, li {
+	list-style: none;
 	display: inline-block;
 	transition: 0.8s all;
 	height: 80px;
@@ -108,4 +108,9 @@ footer {
 	float: right;
 }
 
+.show {
+	display: flex;
+    margin: 0 auto;
+    justify-content: center;
+}
 
