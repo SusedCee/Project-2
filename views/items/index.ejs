@@ -22,8 +22,12 @@
             </li>
             <% }) %>
         </ul>
+        <%if(session.logged) {%>
         <nav>
-            <a href="/items/new">Add a new item!</a>
+             <form action='/items/new'>
+                    <input type="submit" value="Add a new item!">
+                </form>
         </nav>
+        <%}%>
     </body>
 </html>

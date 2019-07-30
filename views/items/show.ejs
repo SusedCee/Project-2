@@ -19,18 +19,24 @@
         </header>
         <main>
             <section>
-                <h1><%=item.title%> by: <%=user.username%></h1>
+                <h1><%=item.title%></h1>
                 <img src="<%=item.img%>">
                 <p><%=item.description%></p>
+                 <p>Uploaded by: <%=user.username%></p>
             </section>
+
+            <%if(item.user == session.userId) {%>
             <section>
-                <a href="/items/<%=item._id%>/edit">Edit Item Info</a>
+                <form action='/items/<%=item._id%>/edit'>
+                    <input type="submit" value="Edit Your Item">
+                </form>
             </section>
             <section>
                 <form action='/items/<%=item._id%>?_method=DELETE' method='post'>
                     <input type="submit" value="Trash Your Item">
                 </form>
             </section>
+            <%}%>
         </main>
     </body>
 </html>
