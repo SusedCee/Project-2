@@ -15,8 +15,15 @@
         <ul>
             <%items.forEach(function(item,index){ %>
             <li>
-                <a href="/items/<%=item._id%>"><img src='<%=item.img%>'></a>
-                <button type="button">Like!</button>
+                <a href="/items/<%=item._id%>"><img src='<%=item.img%>'></a>             	
+                <div class ="likedislike">
+                    <form action='/items/<%=item._id%>/addLike' method="post">
+                    <input type='submit' value="Love It"><%=item.likes.length%>
+                    </form>
+                     <form action='/items/<%=item._id%>/addDislike' method="post">
+                    <input type='submit' value="Hate It"><%=item.dislikes.length%>
+                    </form>
+                </div>
             </li>
             <% }) %>
         </ul>
@@ -27,12 +34,13 @@
                 </form>
         </nav>
         <%}%>
-
-    </body>
-
-    <footer>
+        
+        <footer>
         <%- include ../partials/_footer.ejs %>
     </footer>
+    </body>
+
+    
 </html>
 
 

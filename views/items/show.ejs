@@ -14,19 +14,19 @@
         <div>
             <section>
                 <h1><%=item.title%></h1>
-                <img class="show" src="<%=item.img%>">
-                <p class="show"><%=item.description%></p>
-                 <p class="show">Uploaded by: <%=user.username%></p>
+                <img class="showing" src="<%=item.img%>">
+                <p class="showing"><%=item.description%></p>
+                 <p class="showing">Uploaded by: <%=user.username%></p>
             </section>
         </div>
 
             <%if(item.user == session.userId) {%>
-            <section class="show">
+            <section class="showing">
                 <form action='/items/<%=item._id%>/edit'>
                     <input type="submit" value="Edit Your Item">
                 </form>
             </section>
-            <section class="show">
+            <section class="showing">
                 <form action='/items/<%=item._id%>?_method=DELETE' method='post'>
                     <input type="submit" value="Trash Your Item">
                 </form>

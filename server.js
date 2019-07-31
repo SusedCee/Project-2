@@ -32,14 +32,14 @@ app.use(methodOverride('_method'));
 app.use(express.static('public'));
 
 app.use((req,res, next)=> {
-  //res.locals.currentUser = req.session.userId
-
+  console.log("req.ses",req.session)
   if (!req.session.logged)
   {
     req.session.userId = null;
   }
-
+  
   res.locals.session = req.session
+  console.log("res.loc.ses:",res.locals.session)
   next();
 })
 

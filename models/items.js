@@ -8,7 +8,9 @@ const itemSchema = mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "User",
 		required: true
-	}
+	},
+	dislikes: [String],
+	likes: [String]
 });
 
 const Item = mongoose.model("Item", itemSchema);

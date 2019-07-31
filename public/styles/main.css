@@ -23,6 +23,8 @@ nav {
 	height: 80px;
 	background-color: #989898;
 	line-height: 80px;
+	font-size: 25px;
+
 }
 
 nav ul {
@@ -37,7 +39,6 @@ nav, ul, li {
 	display: inline-block;
 	transition: 0.8s all;
 	height: 80px;
-	font-size: 25px;
 
 }
 
@@ -108,9 +109,34 @@ footer {
 	float: right;
 }
 
-.show {
+.showing{
 	display: flex;
     margin: 0 auto;
     justify-content: center;
 }
 
+.likedislike {
+	text-align: center
+}
+
+.modal-dialog {
+	text-align: center
+}
+
+#loginButton, #registerButton {
+	margin: 40px;
+	background-color: #A80000;
+	color: white;
+	font-weight: bold;
+	border: none
+}
+
+.input {
+	width: 50%;
+	height: 40px;
+	margin: 2px;
+	font-size: 20px;
+	border:solid 1px slategray;
+	border-radius: 4px;
+	text-align: center;
+}

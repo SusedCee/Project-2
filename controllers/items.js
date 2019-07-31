@@ -85,6 +85,57 @@ router.post('/', async (req,res) => {
     } 
 })
 
+router.post('/:id/addLike', async (req,res) => {
+    console.log("rsui:",req.session.userId)
+    if(!req.session.userId){
+        // req.session.message = "You must be logged in to cast a vote!"
+        res.redirect('back')
+    }else{
+        try{
+        const foundItem = await Item.findById(req.params.id)
+        const userLiked = await isOppositeThere("like",foundItem,req)
+        if(userLiked > -1){
+            foundItem.likes.splice(userLiked,1)
+        }else {
+            foundItem.likes.push(req.session.userId)
+            const userDisliked = await isOppositeThere("dislike",foundItem,req)
+            if (userDisliked > -1){
+                foundItem.dislikes.splice(userDisliked, 1)
+            }
+        }
+        foundItem.save()
+        res.redirect('/items')
+    }catch(err){
+        res.send(err)
+    }
+}
+})
+
+router.post('/:id/addDislike', async (req,res) => {
+    console.log("rsui:",req.session.userId)
+    if(!req.session.userId){
+        req.session.message = "You must be logged in to cast a vote!"
+        res.redirect('back')
+    }else{
+        try{
+            const foundItem = await Item.findById(req.params.id)
+            const userDisliked = await isOppositeThere("dislike",foundItem,req)
+            if(userDisliked > -1){
+                foundItem.dislikes.splice(userDisliked,1)
+            }else {
+                foundItem.dislikes.push(req.session.userId)
+                const userLiked = await isOppositeThere("like",foundItem,req)
+                if (userLiked > -1){
+                    foundItem.likes.splice(userLiked, 1)
+                }
+            }
+            foundItem.save()
+            res.redirect('/items')
+        }catch(err){
+            res.send(err)
+        }
+    }
+})
 
 router.delete('/:id', async (req,res) => {
     try{
@@ -109,3 +160,15 @@ router.put('/:id', async (req,res) => {
 
 
 module.exports = router
+
+
+const isOppositeThere = (likeDislike,foundItem,req) => {
+    let feedbackType = likeDislike==="like" ? "likes":"dislikes"
+    let counter = -1
+    foundItem[feedbackType].forEach(function(oneUserId,index){
+        if(oneUserId === req.session.userId){
+            counter = index;
+        }
+    }) 
+    return counter
+}
