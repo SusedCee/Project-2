@@ -29,14 +29,10 @@ router.get('/login', (req,res) => {
 //SHOW ALL POSTS THAT ONE USER MADE
 router.get('/:id', async (req,res) => {
     try{
-    	console.log('show working')
         const foundUser = await User.findById(req.params.id)
-        console.log(foundUser)
         {
-            const foundItems = await Item.find({userId: req.params.id});
-            console.log(foundItems)
+            const foundItems = await Item.find({user: req.params.id});
             {
-                
                 res.render('users/show.ejs', {
                     user: foundUser,
                     items: foundItems
@@ -67,7 +63,6 @@ router.post('/', async (req,res) => {
     try{
         const newUser = await User.create(req.body)
         req.session.userId = newUser._id
-        console.log(req.session.userId)
         res.render('index.ejs') //maybe send to home page
     }catch(err){
         console.log(err)
@@ -77,7 +72,10 @@ router.post('/', async (req,res) => {
 
 router.delete('/:id', async (req,res) => {
     try{
-        User.findByIdAndDelete(req.params.id)
+        await User.findByIdAndDelete(req.params.id)
+        await Item.deleteMany({
+            user:req.params.id 
+           })
         res.redirect('/users')
     }catch(err){
         console.log(err)
@@ -96,12 +94,13 @@ router.put('/:id', async (req,res) => {
 })
 
 router.post('/login', async (req,res) => {
-    console.log(req.body)
+    // console.log(req.body)
     try{
     const userFromDb = await User.findOne({email: req.body.email})
-    console.log(userFromDb)
+    // console.log(userFromDb)
     if(userFromDb.password === req.body.password){
-        req.session.userId = userFromDb._id
+        req.session.userId = userFromDb._id;
+        req.session.logged = true;
         res.redirect('/items')
     }else{
         res.send("bad login")

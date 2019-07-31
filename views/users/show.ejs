@@ -15,23 +15,27 @@
 
         <main>
             <section>
-                <li>
-                    Name: <%=user.username%> 
-                </li>
+                    <h2><%=user.username%>'s Cool Stuff</h2>
+                <ul>
                 <li>
                     <% items.forEach(function(item, index) {%> <!-- items is the array of objects --> 
                     <a href="/items/<%=item._id%>"><img src="<%=item.img%>"></a>
                     <%})%>
                 </li>
+                </li>
+            </section>
+            <%if(user._id == session.userId) {%>
+            <section>
+               <form action='/users/<%=user._id%>/edit'>
+                    <input type="submit" value="Edit Your Info">
+                </form>
             </section>
             <section>
-                <a href="/users/<%=user._id%>/edit">Edit Account</a>
-            </section>
-            <section>
-                <form action='/items/<%=items._id%>?_method=DELETE' method='post'>
+                <form action='/users/<%=user._id%>?_method=DELETE' method='post'>
                     <input type="submit" value="Delete your Account">
                 </form>
             </section>
+            <%}%>
         </main>
     </body>
 
