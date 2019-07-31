@@ -2,16 +2,37 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/styles/main.css">
     <link href="https://fonts.googleapis.com/css?family=Aldrich|DM+Serif+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Signika&display=swap" rel="stylesheet">
+
     <title>Home Page</title>
   </head>
   <body>
-    <header>
       <%- include ./partials/_navbar.ejs %>
-    </header>
     <main>
-      <h1>Love it or Loss It</h1>
+    <div class="banner">
+      <img class="banner-image" src="/images/bannertwo.jpg">
+    </div>
+
+      <h1>Welcome to Red Carpet</h1>
+      <div class="welcome">
+        <p>This site gives members the opportunity to like or dislike celebrity red carpet outfits.</p><br/>
+        <p>Join now to:</p>
+        <p>Upload your favorite celebrity outfits (even if they are not on the red carpet).</p>
+        <p>Browse what other members post. </p>
+        <p>Like or dislike other peoples' posts.</p><br/>
+      </div>
+
+      <div>
+        <p class="mostleast">Most Loved and Least Loved<p>
+        <div class="ranks">
+          <li></li>
+          <li></li>
+      </div>
+      </div>
     </main>
   </body>
   
