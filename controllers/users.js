@@ -27,6 +27,24 @@ router.get('/', async (req,res) => {
 // })
 
 //SHOW ALL POSTS THAT ONE USER MADE
+
+
+//websit source https://github.com/Createdd/authenticationIntro
+router.get('/logout', function(req, res) {
+    //console.log("hello",'req.session')
+  req.session.destroy(function(err){  
+    //console.log("goodbye",'req.session')
+        if(err){  
+            console.log(err); 
+            res.send(err);
+        }  
+        else  
+        {  
+           res.redirect('/');
+        }  
+    });
+});
+
 router.get('/:id', async (req,res) => {
     try{
         const foundUser = await User.findById(req.params.id)
@@ -62,9 +80,9 @@ router.get('/:id/edit', async (req,res) => {
 router.post('/', async (req,res) => {
     try{
         const newUser = await User.create(req.body)
-        console.log("req.body",req.body)
-        console.log("newUser",newUser)
-        console.log("newUserid",newUser._id)
+        // console.log("req.body",req.body)
+        // console.log("newUser",newUser)
+        // console.log("newUserid",newUser._id)
         req.session.userId = newUser._id
         req.session.logged = true;
         res.redirect('/items')
