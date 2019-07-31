@@ -4,13 +4,13 @@
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="navigation.js"></script>
+<script src="../public/js/navigation.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 
         <div id="navbar"> 
-            <nav>
+            <nav id='navContainer'>
                 <div class="logo">
                     <img id="logo" src="/images/redcarpetlogo.png">
                 </div>
@@ -18,8 +18,8 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="/items">Celebs</a></li>
                     <li><a href="/users">Members</a></li>
-                    <li> <a href="/users/new"><img src="/images/register.png" width="70" height="70" class="icon">Register</a></li>
-                    <li><a href="/users/login"><img src="/images/login.png" width="70" height="70" class="icon">Login</a></li>
+                    <li> <a href="#registerModal" data-toggle="modal"><img src="/images/register.png" width="70" height="70" class="icon">Register</a></li>
+                    <li><a href="#loginModal"  data-toggle="modal"><img src="/images/login.png" width="70" height="70" class="icon">Login</a></li>
                 </ul>
                 <div class="burger">
                     <div class="line1"></div>
@@ -39,9 +39,9 @@
         </div>
         <div class="modal-body">
             <form action="/users/login" method="POST">
-                <input class ='input' placeholder="Email" type="email" name="email"><br/>
-                <input class='input' placeholder="Password" type="password" name="password"><br/>
-                <input class='input' id='loginButton' type='submit' value="Login"/>
+                <input class='formFields' placeholder="Email" type="email" name="email"><br/>
+                <input class='formFields' placeholder="Password" type="password" name="password"><br/>
+                <input class='formFields' id='loginButton' type='submit' value="Login"/>
             </form>
         </div>
         <div class="modal-footer">
@@ -62,10 +62,10 @@
         </div>
         <div class="modal-body">
             <form action="/users" method="POST">
-                <input class='input' type="text" placeholder="Username" name="username"><br/>
-                <input class ='input' placeholder="Email" type="email" name="email"><br/>
-                <input class='input' placeholder="Password" type="password" name="password"><br/>
-                <input class='input' id="registerButton" type='submit' value="Login"/>
+                <input class='formFields' type="text" placeholder="Username" name="username"><br/>
+                <input class='formFields' placeholder="Email" type="email" name="email"><br/>
+                <input class='formFields' placeholder="Password" type="password" name="password"><br/>
+                <input class='formFields' id="registerButton" type='submit' value="Login"/>
             </form>
         </div>
         <div class="modal-footer">
