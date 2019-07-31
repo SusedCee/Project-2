@@ -17,14 +17,14 @@ router.get('/', async (req,res) => {
     }
 })
 
-//ADD A NEW USER
-router.get('/new', (req,res) => {
-    res.render('users/new.ejs')
-})
+// //ADD A NEW USER
+// router.get('/new', (req,res) => {
+//     res.render('users/new.ejs')
+// })
 
-router.get('/login', (req,res) => {
-    res.render('users/login.ejs')
-})
+// router.get('/login', (req,res) => {
+//     res.render('users/login.ejs')
+// })
 
 //SHOW ALL POSTS THAT ONE USER MADE
 router.get('/:id', async (req,res) => {
@@ -62,8 +62,13 @@ router.get('/:id/edit', async (req,res) => {
 router.post('/', async (req,res) => {
     try{
         const newUser = await User.create(req.body)
+        console.log("req.body",req.body)
+        console.log("newUser",newUser)
+        console.log("newUserid",newUser._id)
         req.session.userId = newUser._id
-        res.render('index.ejs') //maybe send to home page
+        req.session.logged = true;
+        res.redirect('/items')
+        console.log('user '+req.session.userId+" was created")
     }catch(err){
         console.log(err)
         res.send(err)
@@ -76,6 +81,7 @@ router.delete('/:id', async (req,res) => {
         await Item.deleteMany({
             user:req.params.id 
            })
+        req.session.logged = false;
         res.redirect('/users')
     }catch(err){
         console.log(err)
@@ -105,7 +111,6 @@ router.post('/login', async (req,res) => {
     }else{
         res.send("bad login")
     }
-    // res.send('trying to login')
     }catch(err){
         res.send(err)
     }

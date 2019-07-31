@@ -242,10 +242,34 @@ footer {
 	justify-content: center;
 	text-decoration: none;
 
-.show {
-	display: flex;
+.showing{ 
+    display: flex;
     margin: 0 auto;
     justify-content: center;
-
 }
 
+.likedislike {
+	text-align: center
+}
+
+.modal-dialog {
+	text-align: center
+}
+
+#loginButton, #registerButton {
+	margin: 40px;
+	background-color: #A80000;
+	color: white;
+	font-weight: bold;
+	border: none
+}
+
+.input {
+	width: 50%;
+	height: 40px;
+	margin: 2px;
+	font-size: 20px;
+	border:solid 1px slategray;
+	border-radius: 4px;
+	text-align: center;
+}
