@@ -1,27 +1,25 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="../public/js/navigation.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="/js/navigation.js"></script>
 </head>
 <body>
-
         <div id="navbar"> 
             <nav id='navContainer'>
                 <div class="logo">
                     <img id="logo" src="/images/redcarpetlogo.png">
                 </div>
-                <ul class="nav-links">
+                <ul class="nav-links" id="navLinksId">
                     <li><a href="/">Home</a></li>
                     <li><a href="/items">Celebs</a></li>
                     <li><a href="/users">Members</a></li>
                     <li> <a href="#registerModal" data-toggle="modal"><img src="/images/register.png" width="70" height="70" class="icon">Register</a></li>
                     <li><a href="#loginModal"  data-toggle="modal"><img src="/images/login.png" width="70" height="70" class="icon">Login</a></li>
                 </ul>
-                <div class="burger">
+                <div class="burger" onClick="burgerClick()">
                     <div class="line1"></div>
                     <div class="line2"></div>
                     <div class="line3"></div>
@@ -81,7 +79,10 @@
     console.log('script')
     alert("<%=session.message%>")
     </script>
-    <%}%>
+<%}%>
+
+<script type="text/javascript" src="/js/navigation.js"></script>
+
 </body>
 </html>
 

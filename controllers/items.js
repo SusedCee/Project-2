@@ -172,3 +172,15 @@ const isOppositeThere = (likeDislike,foundItem,req) => {
     }) 
     return counter
 }
+
+// const mostLiked = () => {
+//     let maxUserId = ""
+//     let max = 0
+//     for let(i = 0; i < items.length; i++) {
+//         if(items.likes.length > max) {
+//             maxUserId = items.img
+//             max = items.likes.length
+//         }
+//     }return maxUserId
+// }
+// mostLiked()
