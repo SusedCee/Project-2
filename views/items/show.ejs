@@ -11,12 +11,35 @@
     <body>
     <header>
       <%- include ../partials/_navbar.ejs %>
+        <div class="container">
+        <div class="modal fade" id="editCelebModal" role="dialog">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class='modalHeader'>Edit Your Celebrity</h1>
+                </div>
+                <div class="modal-body">
+                    <form action="/items/<%=item._id%>?_method=PUT" method="POST">
+                        <input class='formFields'  value="<%=item.title%>" type="text" name="title"><br/>
+                        <input class='formFields' value="<%=item.description%>" type="text" name="description"><br/>
+                        <input class='formFields' value="<%=item.img%>" type="URl" name="img"><br/>
+                        <input class='formFields' id="uploadButton" type='submit' value="Update Info!"/>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
     </header>
         <main>
         <div>
             <section>
                 <h1><%=item.title%></h1>
-                <img class="showing" src="<%=item.img%>">
+                <img class="showing" id="showCelebPhoto" src="<%=item.img%>">
                 <p class="showing"><%=item.description%></p>
                  <p class="showing">Uploaded by: <%=user.username%></p>
             </section>
@@ -24,13 +47,11 @@
 
             <%if(item.user == session.userId) {%>
             <div class="editDelete">
-            <section class="editButton showing"> 
-                <form action='/items/<%=item._id%>/edit'>
-                    <input class='editButton' type="submit" value="Edit Your Item">
-                </form>
+            <section class="editSection showing"> 
+                <a href="#editCelebModal" class='editButton' data-toggle="modal">Edit Celebrity</a>
             </section>
 
-            <section class="deleteButton showing">
+            <section class="deleteSection showing">
                 <form action='/items/<%=item._id%>?_method=DELETE' method='post'>
                     <input class='deleteButton' type="submit" value="Trash Your Item">
                 </form>

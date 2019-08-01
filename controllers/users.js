@@ -118,13 +118,18 @@ router.put('/:id', async (req,res) => {
 })
 
 router.post('/login', async (req,res) => {
-    // console.log(req.body)
+    console.log(req.body)
     try{
     const userFromDb = await User.findOne({email: req.body.email})
-    // console.log(userFromDb)
+    console.log(userFromDb)
+    
+    console.log("uFDB;",userFromDb.password)
+    console.log('rbp:',req.body.password)
     if(userFromDb.password === req.body.password){
         req.session.userId = userFromDb._id;
         req.session.logged = true;
+        req.session.username = userFromDb.username
+        req.session.email = userFromDb.email
         res.redirect('/items')
     }else{
         res.send("bad login")

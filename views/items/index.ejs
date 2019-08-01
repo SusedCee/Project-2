@@ -10,29 +10,7 @@
     <body>
     <header>
       <%- include ../partials/_navbar.ejs %>
-      <div class="container">
-        <div class="modal fade" id="newCelebModal" role="dialog">
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h1 class='modalHeader'>Upload Your Celebrity</h1>
-                </div>
-                <div class="modal-body">
-                    <form action="/items" method="POST">
-                        <input class='formFields'  placeholder="Celebrity Name" type="text" name="title"><br/>
-                        <input class='formFields' placeholder="Description" type="text" name="description"><br/>
-                        <input class='formFields' placeholder="Image URL" type="URl" name="img"><br/>
-                        <input class='formFields' id="uploadButton" type='submit' value="UPLOAD"/>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
+  
     </header>
 
     <h1>Cool Stuff Index Page</h1>
@@ -55,12 +33,6 @@
             </li>
             <% }) %>
         </ul>
-        <%if(session.logged) {%>
-        <div class='inputField'>
-            <a href="#newCelebModal" data-toggle="modal" class="addCelebrity">Add A New Celebrity!</a>
-          
-        </div>
-        <%}%>
         
         <footer>
         <%- include ../partials/_footer.ejs %>
