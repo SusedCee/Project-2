@@ -16,14 +16,14 @@
                     <img id="logo" src="/images/redcarpetlogo.png">
                 </div>
                 <ul class="nav-links">
-                    <li><a href="/">Home</a></li>
+                    <li><a href="/users/<%=session.userId%>">Profile</a></li>
                     <li><a href="/items">Celebs</a></li>
                     <li><a href="/users">Members</a></li>
                     <%if(!session.logged){%>
                     <li><a href="#registerModal" data-toggle="modal"><img src="/images/register.png" width="70" height="70" class="icon">Register</a></li>
                     <li><a href="#loginModal"  data-toggle="modal"><img src="/images/login.png" width="70" height="70" class="icon">Login</a></li>
                     <%}else{%>
-                    <li><a href="#editUserModal" data-toggle="modal">Profile</a></li>
+                    <li><a href="#editUserModal" data-toggle="modal">Account</a></li>
                     <li><a href="#newCelebModal" data-toggle="modal">Upload</a></li>
                     <li><a href="/users/logout" ><img src="/images/login.png" width="70" height="70" class="icon">Logout</a></li>
                     <%}%>
