@@ -5,8 +5,9 @@ const session        = require('express-session');
 const app            = express();
 const flash          = require('connect-flash')
 
+require('dotenv').config()
+require('./db/db')
 
-require('./db/db');
 
 const itemsController = require('./controllers/items');
 const usersController = require('./controllers/users');
@@ -61,6 +62,6 @@ app.get('/', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log('listening..... on port 3000');
 });
