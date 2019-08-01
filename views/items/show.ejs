@@ -23,17 +23,23 @@
         </div>
 
             <%if(item.user == session.userId) {%>
-            <section class="showing">
+            <div class="editDelete">
+            <section class="editButton showing"> 
                 <form action='/items/<%=item._id%>/edit'>
-                    <input type="submit" value="Edit Your Item">
+                    <input class='editButton' type="submit" value="Edit Your Item">
                 </form>
             </section>
-            <section class="showing">
+
+            <section class="deleteButton showing">
                 <form action='/items/<%=item._id%>?_method=DELETE' method='post'>
-                    <input type="submit" value="Trash Your Item">
+                    <input class='deleteButton' type="submit" value="Trash Your Item">
                 </form>
             </section>
+            </div>
             <%}%>
+            <br/>
+            <br/
+            <br/>
         </main>
     </body>
   <footer>

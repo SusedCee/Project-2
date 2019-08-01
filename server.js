@@ -3,6 +3,7 @@ const bodyParser     = require('body-parser');
 const methodOverride = require('method-override');
 const session        = require('express-session');
 const app            = express();
+const flash          = require('connect-flash')
 
 
 require('./db/db');
@@ -31,18 +32,27 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
 
+
 app.use((req,res, next)=> {
-  // console.log("req.ses",req.session)
+  console.log("req.ses",req.session)
   if (!req.session.logged)
   {
     req.session.userId = null;
   }
-  
-  res.locals.session = req.session
+  console.log('app.use route')
   // console.log("res.loc.ses:",res.locals.session)
+
+  res.locals.session = req.session
+    
+  // req.session.message= null
+
+  console.log("res.loc.ses:",res.locals.session)
   next();
 })
 
+
+
+app.use(flash());
 app.use('/items', itemsController);
 app.use('/users', usersController);
 

@@ -95,6 +95,34 @@ footer {
 	justify-content: center;
 }
 
+.celebPhoto {
+	display: inline-block;
+	max-height: 350px;
+	margin: 8px
+	
+
+}
+.leftButton {
+	display: inline-block;
+	margin-right: 40px;
+
+	
+}
+.rightButton {
+	display: inline-block;
+	margin-left: 40px;
+
+} 
+
+.heartButton {
+	height: 30px;
+	width: 30px
+}
+/* .likeDislikeButtons {
+	margin: 1px;
+
+} */
+
 /*.clearfix:after {
 	visibility: hidden;
 	display: block;
@@ -105,6 +133,7 @@ footer {
 }*/
 
 .copyright {
+	margin: 5px;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -261,33 +290,56 @@ footer {
 }
 
 .showing{ 
+	max-height: 650px;
+	font-size: 17px;
     display: flex;
-    margin: 0 auto;
+    margin: 10px auto;
     justify-content: center;
 }
+/* 
+.editButton, .deleteButton {
+	display: inline-block;
+	margin-left:
+} */
 
 .likedislike {
 	text-align: center
+
 }
+.editDelete, .inputField {
+	text-align: center
+
+}
+
 
 .modal-dialog {
 	text-align: center
 }
 
-#loginButton, #registerButton {
+#uploadButton, #loginButton, #registerButton, .addCelebrity {
 	margin: 40px;
 	background-color: #A80000;
 	color: white;
 	font-weight: bold;
 	border: none
 }
+.addCelebrity {
+	padding: 10px;
+	font-size: 20px;
+	border-radius: 20px;
+	text-align: center;
+}
 
 .formFields {
-	width: 50%;
-	height: 40px;
 	margin: 2px;
 	font-size: 20px;
 	border:solid 1px slategray;
 	border-radius: 4px;
 	text-align: center;
+}
+
+.editButton, .deleteButton {
+	display: inline-block;
+	margin-right: 20px;
+	margin-left: 20px;
 }

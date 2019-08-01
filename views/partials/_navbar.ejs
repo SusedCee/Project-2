@@ -19,9 +19,13 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="/items">Celebs</a></li>
                     <li><a href="/users">Members</a></li>
-                    <li> <a href="#registerModal" data-toggle="modal"><img src="/images/register.png" width="70" height="70" class="icon">Register</a></li>
+                    <%if(!session.logged){%>
+                    <li><a href="#registerModal" data-toggle="modal"><img src="/images/register.png" width="70" height="70" class="icon">Register</a></li><li>
                     <li><a href="#loginModal"  data-toggle="modal"><img src="/images/login.png" width="70" height="70" class="icon">Login</a></li>
-                    <li><a href="/users/logout" class="logout">Logout</a></li>
+                    <%}else{%>
+                    <li><a href="#newCelebModal" data-toggle="modal">Upload</a></li>
+                    <li><a href="/users/logout" ><img src="/images/login.png" width="70" height="70" class="icon">Logout</a></li>
+                    <%}%>
                 </ul>
                 <div class="burger">
                     <div class="line1"></div>
@@ -78,12 +82,6 @@
   </div>
 </div>
 
-<%if(session.message){%>
-    <script>
-    console.log('script')
-    alert("<%=session.message%>")
-    </script>
-    <%}%>
 </body>
 </html>
 
