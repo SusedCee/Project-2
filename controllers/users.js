@@ -132,7 +132,7 @@ router.post('/login', async (req,res) => {
         // console.log('req.ses.us',req.session.username)
         req.session.email = userFromDb.email
         // console.log('req.sess.email',req.session.email)
-        res.redirect('/items')
+        res.redirect('back')
     }else{
         // res.redirect('#incorrectLoginModal')
         res.send("bad login")

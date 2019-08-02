@@ -61,33 +61,34 @@
             </section>
             </div>
             <%}%>
-            
-
+            <br/>
+            <br/>
+            <%if(session.logged){%>
             <section class="comments">
+            <br/>
+
                 <h3>Add A Comment</h3>
                 <form id="comment" action="/items/<%=item._id%>/addcomment" method="POST">
-                    <textarea rows="8" cols="65" name="text"></textarea><br/>
+                    <textarea class='textbox' name="text"></textarea><br/>
                     <input type="submit" class="postButton" value="Post Your Comment" id="addComment">
                 </form> 
             </section>
-            <br/>
+           <%}%>
+           <br/>
             <br/> 
-            <br/>
+    
 
-
-
-
-            <ul>
+            <ul class='comments'>
                 <%item.comments.forEach(function(comment, index){%>
-                <li>
-                    <%=comment.userName%>: <%=comment.text%>
+                <li class="commentAndUser">
+                    <div class="commentUserName"><%=comment.userName%>:</div> <div class="userComment"><%=comment.text%></div>
                    
                     <%if(comment.userName == session.username) {%>
                     <div class="deleteComment">
                    
-                     <form action='/items/<%=item._id%>/comment/<%=index%>?_method=DELETE' method='post'>
-                    
-                    <input type="submit" value="Delete Your Comment">
+                    <form action='/items/<%=item._id%>/comment/<%=index%>?_method=DELETE' method='post'>
+                
+                    <input class='deleteButton' type="submit" value="Delete Comment">
                     
 
                     </form>

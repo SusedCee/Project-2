@@ -52,7 +52,7 @@
                 <br/>
                 <div>
                 <p id="passwordMatchErrorMessage"></p>
-               
+                </div>
                 <input class='formFields' id='loginButton' type='submit' value="Login"/>
             </form>
         </div>
@@ -84,9 +84,13 @@
         </div>
         <div class="modal-body">
             <form action="/users" method="POST">
-                <input class='formFields' type="text" placeholder="Username" name="username"><br/>
-                <input class='formFields' placeholder="Email" type="email" name="email"><br/>
-                <input class='formFields' placeholder="Password" type="password" name="password"><br/>
+                <input class='formFields' id="registerUsernameInput" type="text" placeholder="Username" name="username"><br/>
+                <input class='formFields' id="registerEmailInput" placeholder="Email" type="email" name="email"><br/>
+                <input class='formFields' id="registerPasswordInput" placeholder="Password" type="password" name="password"><br/>
+                 <div>
+                 <p id="registerErrorMessage"></p>
+                <p id="emailErrorMessage"></p>
+                </div>
                 <input class='formFields' id="registerButton" type='submit' value="Login"/>
             </form>
         </div>
@@ -97,6 +101,22 @@
     </div>
   </div>
 </div>
+<script>
+  const registerModalButton = document.getElementById('registerButton')
+  registerModalButton.addEventListener("click", function(event) {
+    if(document.getElementById('registerEmailInput').value.length <= 0 || document.getElementById('registerPasswordInput').value.length <= 0 || document.getElementById('registerUsernameInput').value.length <=0){
+      event.preventDefault()
+      document.getElementById('registerErrorMessage').innerHTML = "Please fill in all fields correctly";
+    } else {
+    users.forEach(function(singleUser, index){
+      if(singleUser[i].email === document.getElementById('registerEmailInput').value){
+      event.preventDefault()
+      document.getElementById('emailErrorMessage').innerHTML = "That email address is already registered. Please Login";
+      }
+    })
+  }
+  })
+</script>
 
     <div class="modalcontainer">
         <div class="modal fade" id="newCelebModal" role="dialog">
