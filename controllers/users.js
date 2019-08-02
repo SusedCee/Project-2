@@ -126,7 +126,7 @@ router.post('/login', async (req,res) => {
     if(passwordIsValid){
         req.session.userId = userFromDb._id;
         // console.log("req.sess.u:", req.session.userId)
-        // console.log('usfrmdbid',userFromDb._id)
+        // console.log('usfrmdbid',userFromDb.password)
         req.session.logged = true;
         req.session.username = userFromDb.username
         // console.log('req.ses.us',req.session.username)
@@ -134,6 +134,7 @@ router.post('/login', async (req,res) => {
         // console.log('req.sess.email',req.session.email)
         res.redirect('/items')
     }else{
+        res.redirect('#incorrectLoginModal')
         res.send("bad login")
     }
     }catch(err){
