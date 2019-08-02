@@ -8,7 +8,7 @@ const flash          = require('connect-flash')
 
 require('dotenv').config()
 require('./db/db')
-console.log("PEP:",process.env.PORT)
+// console.log("PEP:",process.env.PORT)
 
 
 const itemsController = require('./controllers/items');
@@ -24,19 +24,17 @@ app.use(methodOverride('_method'));
 app.use(express.static('public'));
 
 app.use((req,res, next)=> {
-  console.log("req.ses",req.session)
+//   console.log("req.ses",req.session)
   if (!req.session.logged)
   {
     req.session.userId = null;
   }
-  console.log('app.use route')
+//   console.log('app.use route')
   // console.log("res.loc.ses:",res.locals.session)
 
   res.locals.session = req.session
-    
-  // req.session.message= null
 
-  console.log("res.loc.ses:",res.locals.session)
+//   console.log("res.loc.ses:",res.locals.session)
   next();
 })
 
