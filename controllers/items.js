@@ -183,17 +183,7 @@ router.put('/:id', async (req,res) => {
 router.post('/:id/addcomment', async (req, res) =>
 {   
     try{
-        //find the post id
         const foundItem = await Item.findById(req.params.id);
-        
-        //console.log("addcomment req.body.text: " + req.body.text);
-
-        //construct the comment object!
-        //make it look like the schema expects it to!
-
-        //then push the new comment object into the comments array
-
-        //foundItem.comments;
         const user = await User.findById(req.session.userId)
         const newComment =
         {
@@ -201,27 +191,14 @@ router.post('/:id/addcomment', async (req, res) =>
             userId: req.session.userId,
             text: req.body.text
         };
-        // console.log("userId:",req.session.userId)
-        // console.log("username:",req.session.username)
-        // console.log("new comment:",newComment);
-        // console.log("user:",user)
-        // console.log('req.session:',req.session)
         foundItem.comments.push(newComment);
-
         foundItem.save();        
-
-        //const addPost = await foundPost.push(Item.comments);      
-        //const savePost = await comment.create(addPost);
-        //add comment to comments array
-        //save the post
-
         res.redirect(`/items/${req.params.id}`);
 
     }catch(err){
         console.log(err)
         res.send(err)
     }
-    //add a comment on post with id of req.params.id
 });
 
 
