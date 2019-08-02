@@ -62,7 +62,6 @@ app.use('/users', usersController);
 app.get('/', async (req, res) => {
   console.log(`a visit from ${req.session.userId}`)
   const items = await Item.find()
-
   const highVote = await mostLiked(items)
   const lowVote = await leastLiked(items)
   console.log("highVote",highVote)
@@ -71,8 +70,25 @@ app.get('/', async (req, res) => {
     items: items,
     highVote: highVote,
     lowVote: lowVote
+
   });
  });
+
+const mostLiked = (items) => {
+  let maxPhoto= {}
+  let max = 0;
+    for (let i = 0; i < items.length; i++){
+    if(items[i].likes.length > max){             
+        maxPhoto = items[i]
+        max = items[i].likes.length
+    }
+  }
+  return maxPhoto 
+}
+
+
+
+
 
 const mostLiked = (items) => {
   let maxPhoto= {}

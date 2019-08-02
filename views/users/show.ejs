@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/styles/main.css">
     <link href="https://fonts.googleapis.com/css?family=Aldrich|DM+Serif+Display&display=swap" rel="stylesheet">
-        <title>User Show Page</title>
+        <title>Member Show Page</title>
     </head>
     <body>
         <header>
@@ -15,7 +15,7 @@
 
         <main>
             <section>
-                    <h2><%=user.username%>'s Cool Stuff</h2>
+                    <h1 class="title"><%=user.username%>'s Celebrity Posts</h1>
                 <ul>
                 <li class='userImages'>
                     <% items.forEach(function(item, index) {%> <!-- items is the array of objects --> 

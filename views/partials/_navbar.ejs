@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,13 +8,14 @@
 
 </head>
 <body>
-
         <div id="navbar"> 
             <nav id='navContainer'>
                 <div class="logo">
                     <a href='/' class='homeLink'><img id="logo" src="/images/redcarpetlogo.png"></a>
                 </div>
-                <ul class="nav-links">
+
+                <ul class="nav-links" id="navLinksId">
+                    <li><a href="/">Home</a></li>
                     <li><a href="/items">Celebs</a></li>
                     <li><a href="/users">Members</a></li>
                     <%if(!session.logged){%>
@@ -28,7 +28,7 @@
                     <li><a href="/users/logout" ><img src="/images/login.png" width="70" height="70" class="icon">Logout</a></li>
                     <%}%>
                 </ul>
-                <div class="burger">
+                <div class="burger" onClick="burgerClick()">
                     <div class="line1"></div>
                     <div class="line2"></div>
                     <div class="line3"></div>
@@ -82,6 +82,7 @@
     </div>
   </div>
 </div>
+
     <div class="modalcontainer">
         <div class="modal fade" id="newCelebModal" role="dialog">
             <div class="modal-dialog">
@@ -155,6 +156,7 @@
             </div>
         </div>
         <%}%>
+
 </body>
 </html>
 
