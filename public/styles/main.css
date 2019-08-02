@@ -371,6 +371,14 @@ text-align: center
 	text-align: center;
 }
 
+#passwordMatchErrorMessage {
+	width: 50%;
+	font-size: 20px;
+	display: inline-block;
+}
+/* .modal-body {
+	text-align: center;
+} */
 
 .comments{
 	text-align: center
@@ -397,7 +405,7 @@ text-align: center
 	transition: transform 0.5s ease-in;
 }
 
-.editButton, .deleteButton {
+.deleteButton, .postButton {
 	padding: 0 10px 0 10px;
 	border-style: solid;
 	display: inline-block;

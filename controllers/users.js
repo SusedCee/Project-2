@@ -134,7 +134,7 @@ router.post('/login', async (req,res) => {
         // console.log('req.sess.email',req.session.email)
         res.redirect('/items')
     }else{
-        res.redirect('#incorrectLoginModal')
+        // res.redirect('#incorrectLoginModal')
         res.send("bad login")
     }
     }catch(err){
