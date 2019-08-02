@@ -51,8 +51,11 @@
             </section>
 
 
+
+
+
             <section class="deleteSection showing">
-                <form action='/items/<%=item._id%>?_method=DELETE' method='post'>
+                <form action='/items/<%=item._id%>/comments/?_method=DELETE' method='post'>
                     <input class='deleteButton' type="submit" value="Trash Your Item">
                 </form>
             </section>
@@ -71,14 +74,26 @@
             <br/> 
             <br/>
 
-              <ul class="comments">
+
+
+
+            <ul>
                 <%item.comments.forEach(function(comment, index){%>
-                <li><%=comment.userName%>: </li> 
-                <li><%=comment.text%> </li>
-                     
-                     <form action='/items/<%=index%>?_method=DELETE' method='post'>
-                     <input type="submit" class="deleteButton" value="Delete Your Comment">
+                <li>
+                    <%=comment.userName%>: <%=comment.text%>
+                   
+                    <%if(comment.userName == session.username) {%>
+                    <div class="deleteComment">
+                   
+                     <form action='/items/<%=item._id%>/comment/<%=index%>?_method=DELETE' method='post'>
+                    
+                    <input type="submit" value="Delete Your Comment">
+                    
+
                     </form>
+                    </div>
+                   
+                    <%}%>
                 </li>
                 <%})%>
             </ul>
