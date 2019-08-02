@@ -4,6 +4,7 @@ const Item = require('../models/items')
 const User = require('../models/users')
 
 router.get('/', async (req,res) => {
+    console.log('index route')
     try{
         const items = await Item.find()
         res.render('items/index.ejs', {
@@ -15,9 +16,9 @@ router.get('/', async (req,res) => {
     }
 })
 
-router.get('/new', async (req,res) => {
-    res.render('items/new.ejs')
-})
+// router.get('/new', async (req,res) => {
+//     res.render('items/new.ejs')
+// })
 
 router.get('/:id', async (req,res) => {
     try{
@@ -88,8 +89,9 @@ router.post('/', async (req,res) => {
 router.post('/:id/addLike', async (req,res) => {
     console.log("rsui:",req.session.userId)
     if(!req.session.userId){
+
         // req.session.message = "You must be logged in to cast a vote!"
-        res.redirect('back')
+        res.redirect('/items')
     }else{
         try{
         const foundItem = await Item.findById(req.params.id)
@@ -113,9 +115,12 @@ router.post('/:id/addLike', async (req,res) => {
 
 router.post('/:id/addDislike', async (req,res) => {
     console.log("rsui:",req.session.userId)
+    console.log('hello')
     if(!req.session.userId){
-        req.session.message = "You must be logged in to cast a vote!"
-        res.redirect('back')
+        req.flash("message","You must be logged in to cast a vote!")
+        res.locals.session.message = req.flash()
+        // req.session.message = "You must be logged in to cast a vote!"
+        res.redirect('/items')
     }else{
         try{
             const foundItem = await Item.findById(req.params.id)

@@ -8,37 +8,47 @@
         <title>Items Index Page</title>
     </head>
     <body>
+        <main>
     <header>
       <%- include ../partials/_navbar.ejs %>
+  
     </header>
 
     <h1 class="title">Like or Dislike Celebrity Outfits</h1>
         <ul>
             <%items.forEach(function(item,index){ %>
-            <li>
-                <a href="/items/<%=item._id%>"><img src='<%=item.img%>'></a>             	
+            <li class='celebPhoto'>
+                <a href="/items/<%=item._id%>"><img src='<%=item.img%>'  class='celebPhoto'></a>             	
                 <div class ="likedislike">
-                    <form action='/items/<%=item._id%>/addLike' method="post">
-                    <input type='submit' value="Love It"><%=item.likes.length%>
-                    </form>
-                     <form action='/items/<%=item._id%>/addDislike' method="post">
-                    <input type='submit' value="Hate It"><%=item.dislikes.length%>
-                    </form>
+                    <div class="leftButton">
+                        <form action='/items/<%=item._id%>/addLike' method="post" class='likeDislikeButtons'>
+                             <input class="heartButton" type="image" name="submit" src="/images/redheart.png" border="0" alt="Submit" /> <%=item.likes.length%>
+                       </form>
+                     </div>
+                     <div class="rightButton">
+                        <form action='/items/<%=item._id%>/addDislike' method="post" class='likeDislikeButtons'>
+                            <input class="heartButton" type="image" name="submit" src="/images/blackheart.png" border="0" alt="Submit" /> <%=item.dislikes.length%>
+                        </form>
+                    </div>
                 </div>
             </li>
             <% }) %>
         </ul>
-        <%if(session.logged) {%>
-        <div>
-             <form action='/items/new'>
-                    <input type="submit" value="Add a new item!">
-                </form>
-        </div>
-        <%}%>
+
+       
+    </main>
+
         
         <footer>
         <%- include ../partials/_footer.ejs %>
     </footer>
+    <%if(session.message){%>
+    <script>
+    console.log('script')
+    alert("<%=session.message.message%>")
+    </script>
+    <%}%>
+
     </body>
 
     

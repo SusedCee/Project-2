@@ -4,11 +4,12 @@ const methodOverride = require('method-override');
 const session        = require('express-session');
 const app            = express();
 const Item           = require('./models/items');
+const flash          = require('connect-flash')
 
+require('dotenv').config()
+require('./db/db')
+console.log("PEP:",process.env.PORT)
 
-
-require('dotenv').config();
-require('./db/db');
 
 const itemsController = require('./controllers/items');
 const usersController = require('./controllers/users');
@@ -40,12 +41,20 @@ app.use((req,res, next)=> {
   {
     req.session.userId = null;
   }
-  
+  console.log('app.use route')
+  // console.log("res.loc.ses:",res.locals.session)
+
   res.locals.session = req.session
+    
+  // req.session.message= null
+
   console.log("res.loc.ses:",res.locals.session)
   next();
 })
 
+
+
+app.use(flash());
 app.use('/items', itemsController);
 app.use('/users', usersController);
 
@@ -78,4 +87,5 @@ const mostLiked = (items) => {
 
 app.listen(process.env.PORT, () => {
   console.log('listening..... on port' + process.env.PORT);
+
 });
