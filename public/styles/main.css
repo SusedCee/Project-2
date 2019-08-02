@@ -350,6 +350,25 @@ text-align: center
 }
 
 
+.comments{
+	text-align: center
+}
+
+#comment{
+	margin: 5px;
+	
+}
+
+ /*<section class="comments">
+                <h3>Add Comments</h3>
+                <form id="comment">
+                    <textarea rows="10" cols="50" id="bodytext"></textarea>
+                    <input type="button" value="Post Your Comment" id="addComment">
+                </form> 
+            </section>
+*/
+
+
 .display-flex
 {
 	display: flex;
@@ -404,3 +423,4 @@ text-align: center
 .badLogin {
 	text-align: center
 }
+

@@ -142,6 +142,25 @@ router.post('/:id/addDislike', async (req,res) => {
     }
 })
 
+//delete comments
+router.delete('/:id/comment/:commentIndex', async (req,res) => {
+    try{
+        //await Item.findByIdAndDelete(req.body.comments)
+
+        //1. find the item
+        //2. change the comments array
+        //3. save the item
+        const findItem = await Item.findById(req.params.id);
+        findItem.comments.splice(comments.Index, 1);
+        findItem.save();
+
+        res.redirect('/items')
+    }catch(err){
+        console.log(err)
+        res.send(err)
+    }
+})
+
 router.delete('/:id', async (req,res) => {
     try{
         // console.log(req.params.id)
@@ -153,6 +172,8 @@ router.delete('/:id', async (req,res) => {
     }
 })
 
+
+
 router.put('/:id', async (req,res) => {
     try{
         const updatedItem = await Item.findByIdAndUpdate(req.params.id, req.body, {new: true})
@@ -162,6 +183,51 @@ router.put('/:id', async (req,res) => {
         res.send(err)
     }
 })
+
+//add comments
+router.post('/:id/addcomment', async (req, res) =>
+{   
+    try{
+        //find the post id
+        const foundItem = await Item.findById(req.params.id);
+        
+        //console.log("addcomment req.body.text: " + req.body.text);
+
+        //construct the comment object!
+        //make it look like the schema expects it to!
+
+        //then push the new comment object into the comments array
+
+        //foundItem.comments;
+        const user = await User.findById(req.session.userId)
+        const newComment =
+        {
+            userName: user.username,
+            userId: req.session.userId,
+            text: req.body.text
+        };
+        // console.log("userId:",req.session.userId)
+        // console.log("username:",req.session.username)
+        // console.log("new comment:",newComment);
+        // console.log("user:",user)
+        // console.log('req.session:',req.session)
+        foundItem.comments.push(newComment);
+
+        foundItem.save();        
+
+        //const addPost = await foundPost.push(Item.comments);      
+        //const savePost = await comment.create(addPost);
+        //add comment to comments array
+        //save the post
+
+        res.redirect(`/items/${req.params.id}`);
+
+    }catch(err){
+        console.log(err)
+        res.send(err)
+    }
+    //add a comment on post with id of req.params.id
+});
 
 
 module.exports = router
