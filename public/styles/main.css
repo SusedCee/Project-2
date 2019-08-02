@@ -385,3 +385,9 @@ text-align: center
 	margin-left: 60px;
 	max-height: 400px
 }
+
+#homeLink {
+	color: #A80000;
+	font-size: 20px;
+	font-family: 'Adamina';
+}
