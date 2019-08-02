@@ -3,11 +3,13 @@ const bodyParser     = require('body-parser');
 const methodOverride = require('method-override');
 const session        = require('express-session');
 const app            = express();
+const Item           = require('./models/items');
 const flash          = require('connect-flash')
 
 require('dotenv').config()
 require('./db/db')
 console.log("PEP:",process.env.PORT)
+
 
 const itemsController = require('./controllers/items');
 const usersController = require('./controllers/users');
@@ -56,12 +58,34 @@ app.use(flash());
 app.use('/items', itemsController);
 app.use('/users', usersController);
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
   console.log(`a visit from ${req.session.userId}`)
+  const items = await Item.find()
+  console.log("items",items)
+  const highVote = await mostLiked(items)
+  console.log(highVote)
   res.render('index.ejs', {
+    items: items
   });
 });
 
+const mostLiked = (items) => {
+  let maxPhoto= {}
+  let max = 0;
+    for (let i = 0; i < items.length; i++){
+    if(items[i].likes.length > max){             
+        maxPhoto = items[i]
+        max = items[i].likes.length
+    }
+  }
+  return maxPhoto 
+}
+
+
+
+
+
 app.listen(process.env.PORT, () => {
-  console.log('listening..... on port 3000');
+  console.log('listening..... on port' + process.env.PORT);
+
 });

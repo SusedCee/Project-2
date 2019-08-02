@@ -4,26 +4,23 @@
 	box-sizing: border-box;
 }
 
-
-
 body, 
 html {
-	min-height: 100%;
-	font-family: 'DM Serif Display', sans-serif;
+	min-height: 98vh;
+	text-transform: uppercase;
 	cursor: default;
+	bottom-margin: 5px;
+	font-size: 15px;
 }
 
 h1 {
 	display: flex;
 	justify-content: center;
+	text-align: center;
 	font-size: 50px;
 	color: black;
 	margin: 35px;
-/*	text-shadow:
-        -1px -1px 0 #A80000 ,
-        1px -1px 0 #A80000 ,
-        -1px 1px 0 #A80000 ,
-        1px 1px 0 #A80000 ;*/
+	font-family: 'Adamina';
 }
 
 /*Nav Bar https://www.youtube.com/watch?v=Nv7AardvxO0*/
@@ -40,10 +37,10 @@ nav {
 	font-size: 15px;
 }
 
-  nav ul li {
+nav ul li {
 	display: flex;
 	justify-content: flex-end;
-  list-style: none;
+  	list-style: none;
 	display: inline-block;
 	transition: 0.8s all;
 	font-size: 12px;
@@ -61,8 +58,10 @@ nav ul li a {
 }
 
 #list {
-	text-align: left;
-	font-family: 'DM Serif Display', sans-serif;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	font-family: 'Josefin Sans', sans-serif;
 	font-size: 20px;
 	color: black;
 	text-decoration: none;
@@ -71,7 +70,14 @@ nav ul li a {
 
 #list a{
 	text-decoration: none;
-	color: black;
+	color: #333;
+	padding:15px;
+	margin: 10px;
+}
+
+#list a:hover{
+	text-decoration: none;
+	color: #A80000;
 	padding:15px;
 	margin: 10px;
 }
@@ -79,7 +85,6 @@ nav ul li a {
 .registerlogin {
 	float: right;
 }
-
 
 footer {
 	padding: 0 20px;
@@ -89,7 +94,7 @@ footer {
 	letter-spacing: .08em;
 	font-weight: 500;
 	text-transform: uppercase;
-	bottom: 0;
+	bottom: 0px;
 	position: static;
 	width: 100vw;
 	justify-content: center;
@@ -129,20 +134,20 @@ main {
 
 } */
 
-/*.clearfix:after {
-	visibility: hidden;
-	display: block;
-	content: "";
-	clear: both;
-	height: 0;
-	font-size: 0;
-}*/
-
 .copyright {
 	margin: 5px;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
+}
+
+.title {
+	display: flex;
+	justify-content: center;
+	font-size: 45px;
+	color: black;
+	margin: 35px;
+	font-family: 'Adamina';
 }
 
 .logo {
@@ -160,6 +165,7 @@ main {
 .nav-links li {
 	padding-right: 10px;
 	margin-left: 25px
+
 }
 #logo {
 	text-align: left;
@@ -184,8 +190,7 @@ main {
 	transition: all 0.3s ease;
 }*/
 
-@media screen and (max-width:767px) {
-
+@media screen and (max-width:835px) {
 	body{
 		overflow-x: hidden;
 		cursor: pointer;
@@ -196,18 +201,17 @@ main {
 		height: 92vh;
 		top: 95px;
 		background-color: black;
-		display: flex;
+		display: none;
 		flex-direction: column;
 		align-items: center;
 		/* justify-content: space-around; */
 		width: 100%;
-		transform: translateX(100%);
-		transition: transform 0.5s ease-in;
+		
 		color: white;
 	}
 	.nav-links li{
 	/*	opacity: 0;*/
-	margin: 40px;
+	margin: 25px;
 	/* font-size: 50px */
 	}
 	#navContainer {
@@ -229,7 +233,7 @@ main {
 		margin: 8px;
 	}
 	.nav-links li:hover {
-	cursor:pointer;
+	cursor: pointer;
 	color: #A80000;
 
 	}
@@ -272,16 +276,16 @@ main {
 }
 
 .welcome p{
-	font-family: 'DM Serif Display', sans-serif;
-	font-size: 25px;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 20px;
 	display: flex;
 	justify-content: center;
-	margin-bottom: 30px;
+	margin: 10px 30px;
 	text-align: center;
 }
 
 .mostleast{
-	font-family: 'DM Serif Display', sans-serif;
+	font-family: 'Josefin Sans', sans-serif;
 	font-size: 25px;
 	color: #A80000;
 	display: flex;
@@ -309,7 +313,7 @@ main {
 } */
 
 .likedislike {
-	text-align: center
+text-align: center
 
 }
 .editDelete, .inputField {
@@ -318,7 +322,7 @@ main {
 }
 
 .modal-dialog {
-	text-align: center
+	text-align: center;
 }
 
 #uploadButton, #loginButton, #registerButton, .addCelebrity {
@@ -326,7 +330,7 @@ main {
 	background-color: #A80000;
 	color: white;
 	font-weight: bold;
-	border: none
+	border: none;
 }
 .addCelebrity {
 	padding: 10px;
@@ -343,6 +347,14 @@ main {
 	border:solid 1px slategray;
 	border-radius: 4px;
 	text-align: center;
+}
+
+
+.display-flex
+{
+	display: flex;
+	transform: translateX(100%);
+	transition: transform 0.5s ease-in;
 }
 
 .editButton, .deleteButton {
