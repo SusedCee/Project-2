@@ -125,9 +125,13 @@ router.post('/login', async (req,res) => {
     const passwordIsValid = bcrypt.compareSync(req.body.password,userFromDb.password)
     if(passwordIsValid){
         req.session.userId = userFromDb._id;
+        // console.log("req.sess.u:", req.session.userId)
+        // console.log('usfrmdbid',userFromDb._id)
         req.session.logged = true;
         req.session.username = userFromDb.username
+        // console.log('req.ses.us',req.session.username)
         req.session.email = userFromDb.email
+        // console.log('req.sess.email',req.session.email)
         res.redirect('/items')
     }else{
         res.send("bad login")
