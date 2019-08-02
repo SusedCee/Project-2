@@ -58,28 +58,30 @@
             </section>
             </div>
             <%}%>
+            
 
+            <section class="comments">
+                <h3>Add A Comment</h3>
+                <form id="comment" action="/items/<%=item._id%>/addcomment" method="POST">
+                    <textarea rows="8" cols="65" name="text"></textarea><br/>
+                    <input type="submit" class="postButton" value="Post Your Comment" id="addComment">
+                </form> 
+            </section>
+            <br/>
+            <br/> 
+            <br/>
 
-            <ul>
+              <ul class="comments">
                 <%item.comments.forEach(function(comment, index){%>
-                <li>
-                    Comment from <%=comment.userName%>: <%=comment.text%>
+                <li><%=comment.userName%>: </li> 
+                <li><%=comment.text%> </li>
+                     
                      <form action='/items/<%=index%>?_method=DELETE' method='post'>
-                    <input type="submit" value="Delete Your Comment">
+                     <input type="submit" class="deleteButton" value="Delete Your Comment">
                     </form>
                 </li>
                 <%})%>
             </ul>
-            
-
-
-            <section class="comments">
-                <h3>Add Comments</h3>
-                <form id="comment" action="/items/<%=item._id%>/addcomment" method="POST">
-                    <textarea rows="8" cols="65" name="text"></textarea>
-                    <input type="submit" value="Post Your Comment" id="addComment">
-                </form> 
-            </section>
 
             <br/>
             <br/>
