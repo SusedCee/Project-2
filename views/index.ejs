@@ -31,16 +31,17 @@
       <div>
         <p class="mostleast">Most Loved and Least Loved<p>
         <div class="ranks">
-          <ul>
-        
-            <li></li>
-        </ul>
+          <div class="highVote">
+            <img src="<%=highVote.img%>" class="highVote">
+          </div>
+          <div class="lowVote">
+            <img src="<%=lowVote.img%>" class="lowVote">
+          </div>
       </div>
       </div>
     </main>
-  </body>
-  
-  <footer>
+    <footer>
     <%- include ./partials/_footer.ejs %>
   </footer>
+  </body>
 </html>
