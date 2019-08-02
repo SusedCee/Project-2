@@ -380,3 +380,8 @@ text-align: center
 	/* border-style: groove;	 */
 }
 
+.lowVote, .highVote {
+	margin-right: 60px;
+	margin-left: 60px;
+	max-height: 400px
+}

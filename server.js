@@ -5,7 +5,6 @@ const session        = require('express-session');
 const app            = express();
 const Item           = require('./models/items');
 const flash          = require('connect-flash')
-const Item           = require('./models/items')
 
 require('dotenv').config()
 require('./db/db')
@@ -14,18 +13,6 @@ console.log("PEP:",process.env.PORT)
 
 const itemsController = require('./controllers/items');
 const usersController = require('./controllers/users');
-
-
-// app.use(session({
-//   secret: 'THIS IS A RANDOM SECRET STRING',
-//   resave: false, // only save the cookie when, we
-//   // add something or delete something from it
-//   // mutate it
-//   saveUninitialized: false // don't save the cookie
-//   // until the user has "logged in" legal reasons
-//   // as well, you're not supposed to track user data
-//   // until the user has logged in to an app
-// }));
 
 app.use(session({
   secret: 'keepitsecret',
@@ -53,8 +40,6 @@ app.use((req,res, next)=> {
   next();
 })
 
-
-
 app.use(flash());
 app.use('/items', itemsController);
 app.use('/users', usersController);
@@ -74,44 +59,10 @@ app.get('/', async (req, res) => {
   });
  });
 
-const mostLiked = (items) => {
-  let maxPhoto= {}
-  let max = 0;
-    for (let i = 0; i < items.length; i++){
-    if(items[i].likes.length > max){             
-        maxPhoto = items[i]
-        max = items[i].likes.length
-    }
-  }
-  return maxPhoto 
-}
-
-
-
-
-
-const mostLiked = (items) => {
-  let maxPhoto= {}
-  let max = 0;
-    for (let i = 0; i < items.length; i++){
-    if(items[i].likes.length > max){             
-        maxPhoto = items[i]
-        max = items[i].likes.length
-    }
-  }
-  return maxPhoto 
-}
-
-
-
-
-
-app.listen(process.env.PORT, () => {
+ app.listen(process.env.PORT, () => {
   console.log('listening..... on port' + process.env.PORT);
 
 });
-
-
 
 
 const mostLiked = (items) => {
