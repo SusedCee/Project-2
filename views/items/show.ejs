@@ -21,21 +21,49 @@
                  <p class="showing">Uploaded by: <%=user.username%></p>
             </section>
         </div>
-
             <%if(item.user == session.userId) {%>
             <section class="showing">
                 <form action='/items/<%=item._id%>/edit'>
                     <input type="submit" value="Edit Your Item">
                 </form>
             </section>
+            
             <section class="showing">
                 <form action='/items/<%=item._id%>?_method=DELETE' method='post'>
                     <input type="submit" value="Trash Your Item">
                 </form>
             </section>
             <%}%>
+
+            <ul>
+                <%item.comments.forEach(function(comment, index){%>
+                <li>
+                    Comment from <%=comment.userName%>: <%=comment.text%>
+                     <form action='/items/<%=index%>?_method=DELETE' method='post'>
+                    <input type="submit" value="Delete Your Comment">
+                    </form>
+                </li>
+                <%})%>
+            </ul>
+            
+
+
+            <section class="comments">
+                <h3>Add Comments</h3>
+                <form id="comment" action="/items/<%=item._id%>/addcomment" method="POST">
+                    <textarea rows="8" cols="65" name="text"></textarea>
+                    <input type="submit" value="Post Your Comment" id="addComment">
+                </form> 
+            </section>
+
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </main>
-    </body>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        </body>
   <footer>
     <%- include ../partials/_footer.ejs %>
   </footer>

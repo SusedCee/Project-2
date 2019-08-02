@@ -10,7 +10,13 @@ const itemSchema = mongoose.Schema({
 		required: true
 	},
 	dislikes: [String],
-	likes: [String]
+	likes: [String],
+	comments: [
+	{
+		userName: String,
+		userId: String,
+		text: String
+	}]
 });
 
 const Item = mongoose.model("Item", itemSchema);
