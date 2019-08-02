@@ -4,6 +4,7 @@ const Item = require('../models/items')
 const User = require('../models/users')
 
 router.get('/', async (req,res) => {
+    // console.log('index route')
     try{
         const items = await Item.find()
         res.render('items/index.ejs', {
@@ -15,15 +16,15 @@ router.get('/', async (req,res) => {
     }
 })
 
-router.get('/new', async (req,res) => {
-    res.render('items/new.ejs')
-})
+// router.get('/new', async (req,res) => {
+//     res.render('items/new.ejs')
+// })
 
 router.get('/:id', async (req,res) => {
     try{
         const foundItem = await Item.findById(req.params.id)
         {
-            console.log(foundItem)
+            // console.log(foundItem)
             const foundUser = await User.findById(foundItem.user)
             {                
                 res.render('items/show.ejs', {
@@ -52,12 +53,12 @@ router.get('/:id/edit', async (req,res) => {
 })
 
 router.post('/', async (req,res) => {
-    console.log(req.session.userId)
+    // console.log(req.session.userId)
     if(!req.session.userId){
         res.redirect('/users/login')
     }else {   
         try{
-            console.log(req.body)
+            // console.log(req.body)
             req.body.user= req.session.userId
             const newItem = await Item.create(req.body)
             res.redirect('/items')
@@ -76,7 +77,7 @@ router.post('/', async (req,res) => {
         try{
             const newUser = await User.create(req.body)
             req.session.userId = newUser._id
-            console.log('create a celebrity')
+            // console.log('create a celebrity')
             res.render('index.ejs') //maybe send to home page
         }catch(err){
             console.log(err)
@@ -86,10 +87,11 @@ router.post('/', async (req,res) => {
 })
 
 router.post('/:id/addLike', async (req,res) => {
-    console.log("rsui:",req.session.userId)
+    // console.log("rsui:",req.session.userId)
     if(!req.session.userId){
+
         // req.session.message = "You must be logged in to cast a vote!"
-        res.redirect('back')
+        res.redirect('/items')
     }else{
         try{
         const foundItem = await Item.findById(req.params.id)
@@ -112,10 +114,13 @@ router.post('/:id/addLike', async (req,res) => {
 })
 
 router.post('/:id/addDislike', async (req,res) => {
-    console.log("rsui:",req.session.userId)
+    // console.log("rsui:",req.session.userId)
+    // console.log('hello')
     if(!req.session.userId){
-        req.session.message = "You must be logged in to cast a vote!"
-        res.redirect('back')
+        req.flash("message","You must be logged in to cast a vote!")
+        res.locals.session.message = req.flash()
+        // req.session.message = "You must be logged in to cast a vote!"
+        res.redirect('/items')
     }else{
         try{
             const foundItem = await Item.findById(req.params.id)
@@ -137,9 +142,28 @@ router.post('/:id/addDislike', async (req,res) => {
     }
 })
 
+//delete comments
+router.delete('/:id/comment/:commentIndex', async (req,res) => {
+    try{
+        //await Item.findByIdAndDelete(req.body.comments)
+
+        //1. find the item
+        //2. change the comments array
+        //3. save the item
+        const findItem = await Item.findById(req.params.id);
+        findItem.comments.splice(comments.Index, 1);
+        findItem.save();
+
+        res.redirect('/items')
+    }catch(err){
+        console.log(err)
+        res.send(err)
+    }
+})
+
 router.delete('/:id', async (req,res) => {
     try{
-        console.log(req.params.id)
+        // console.log(req.params.id)
         await Item.findByIdAndDelete(req.params.id)
         res.redirect('/items')
     }catch(err){
@@ -147,6 +171,8 @@ router.delete('/:id', async (req,res) => {
         res.send(err)
     }
 })
+
+
 
 router.put('/:id', async (req,res) => {
     try{
@@ -157,6 +183,51 @@ router.put('/:id', async (req,res) => {
         res.send(err)
     }
 })
+
+//add comments
+router.post('/:id/addcomment', async (req, res) =>
+{   
+    try{
+        //find the post id
+        const foundItem = await Item.findById(req.params.id);
+        
+        //console.log("addcomment req.body.text: " + req.body.text);
+
+        //construct the comment object!
+        //make it look like the schema expects it to!
+
+        //then push the new comment object into the comments array
+
+        //foundItem.comments;
+        const user = await User.findById(req.session.userId)
+        const newComment =
+        {
+            userName: user.username,
+            userId: req.session.userId,
+            text: req.body.text
+        };
+        // console.log("userId:",req.session.userId)
+        // console.log("username:",req.session.username)
+        // console.log("new comment:",newComment);
+        // console.log("user:",user)
+        // console.log('req.session:',req.session)
+        foundItem.comments.push(newComment);
+
+        foundItem.save();        
+
+        //const addPost = await foundPost.push(Item.comments);      
+        //const savePost = await comment.create(addPost);
+        //add comment to comments array
+        //save the post
+
+        res.redirect(`/items/${req.params.id}`);
+
+    }catch(err){
+        console.log(err)
+        res.send(err)
+    }
+    //add a comment on post with id of req.params.id
+});
 
 
 module.exports = router
