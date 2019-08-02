@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/users')
 const Item = require('../models/items')
-
+const bcrypt = require('bcryptjs')
 
 //SEE ALL USERS PAGE (INDEX.EJS)
 router.get('/', async (req,res) => {
@@ -79,6 +79,8 @@ router.get('/:id/edit', async (req,res) => {
 
 router.post('/', async (req,res) => {
     try{
+        const salt = bcrypt.genSaltSync()
+        req.body.password = bcrypt.hashSync(req.body.password, salt)
         const newUser = await User.create(req.body)
         // console.log("req.body",req.body)
         // console.log("newUser",newUser)
@@ -118,15 +120,21 @@ router.put('/:id', async (req,res) => {
 })
 
 router.post('/login', async (req,res) => {
-    // console.log(req.body)
     try{
     const userFromDb = await User.findOne({email: req.body.email})
-    // console.log(userFromDb)
-    if(userFromDb.password === req.body.password){
+    const passwordIsValid = bcrypt.compareSync(req.body.password,userFromDb.password)
+    if(passwordIsValid){
         req.session.userId = userFromDb._id;
+        // console.log("req.sess.u:", req.session.userId)
+        // console.log('usfrmdbid',userFromDb.password)
         req.session.logged = true;
+        req.session.username = userFromDb.username
+        // console.log('req.ses.us',req.session.username)
+        req.session.email = userFromDb.email
+        // console.log('req.sess.email',req.session.email)
         res.redirect('/items')
     }else{
+        res.redirect('#incorrectLoginModal')
         res.send("bad login")
     }
     }catch(err){

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,21 +8,27 @@
 
 </head>
 <body>
-
         <div id="navbar"> 
             <nav id='navContainer'>
                 <div class="logo">
-                    <img id="logo" src="/images/redcarpetlogo.png">
+                    <a href='/' id='homeLink'><img id="logo" src="/images/redcarpetlogo.png">THE RED CARPET</a>
                 </div>
-                <ul class="nav-links">
+
+                <ul class="nav-links" id="navLinksId">
                     <li><a href="/">Home</a></li>
                     <li><a href="/items">Celebs</a></li>
                     <li><a href="/users">Members</a></li>
-                    <li> <a href="#registerModal" data-toggle="modal"><img src="/images/register.png" width="70" height="70" class="icon">Register</a></li>
+                    <%if(!session.logged){%>
+                    <li><a href="#registerModal" data-toggle="modal"><img src="/images/register.png" width="70" height="70" class="icon">Register</a></li>
                     <li><a href="#loginModal"  data-toggle="modal"><img src="/images/login.png" width="70" height="70" class="icon">Login</a></li>
-                    <li><a href="/users/logout" class="logout">Logout</a></li>
+                    <%}else{%>
+                    
+                    <li><a href="#editUserModal" data-toggle="modal">Account</a></li>
+                    <li><a href="#newCelebModal" data-toggle="modal">Upload</a></li>
+                    <li><a href="/users/logout" ><img src="/images/login.png" width="70" height="70" class="icon">Logout</a></li>
+                    <%}%>
                 </ul>
-                <div class="burger">
+                <div class="burger" onClick="burgerClick()">
                     <div class="line1"></div>
                     <div class="line2"></div>
                     <div class="line3"></div>
@@ -31,7 +36,7 @@
             </nav>
         </div>
 
-<div class="container">
+<div class="modalcontainer">
   <div class="modal fade" id="loginModal" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -54,7 +59,7 @@
   </div>
 </div>
 
-<div class="container">
+<div class="modalcontainer">
   <div class="modal fade" id="registerModal" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -78,12 +83,100 @@
   </div>
 </div>
 
-<%if(session.message){%>
-    <script>
-    console.log('script')
-    alert("<%=session.message%>")
-    </script>
-    <%}%>
+    <div class="modalcontainer">
+        <div class="modal fade" id="newCelebModal" role="dialog">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class='modalHeader'>Upload Your Celebrity</h1>
+                </div>
+                <div class="modal-body">
+                    <form action="/items" method="POST">
+                        <input class='formFields'  placeholder="Celebrity Name" type="text" name="title"><br/>
+                        <input class='formFields' placeholder="Description" type="text" name="description"><br/>
+                        <input class='formFields' placeholder="Image URL" type="URl" name="img"><br/>
+                        <input class='formFields' id="uploadButton" type='submit' value="UPLOAD"/>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        </div>
+           <div class="modalcontainer">
+            <div class="modal fade" id="deleteModal" role="dialog">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class='modalHeader'>Are you sure you would like to delete your Account</h1>
+                </div>
+                <div class="modal-body">
+                        <form action='/users/<%=session.userId%>?_method=DELETE' method='post'>
+                        <h3></h3>
+                        <input class='formFields' id="uploadButton" type='submit' value="DELETE ACCOUNT"/>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <%if(session.logged){%>
+        <div class="modalcontainer">
+            <div class="modal fade" id="editUserModal" role="dialog">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class='modalHeader'>Edit Your Account</h1>
+                </div>
+                <div class="modal-body">
+                     <form action="/users/<%=session.userId%>?_method=PUT" method="post">
+                        <input class='formFields'  value="<%=session.username%>" type="text" name="username"><br/>
+                        <input class='formFields' value="<%=session.email%>" type="email" name="email"><br/>
+                        <input class='formFields' placeholder="password" type="password" name="password"><br/>
+                        <input class='formFields' id="uploadButton" type='submit' value="Update Info!"/>
+                    </form>
+                </div>
+                <section>
+                <a href="#deleteModal" data-toggle="modal" data-dismiss="modal" class="deleteButton">Delete Account</a> 
+                </section>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                
+                </div>
+            </div>
+        </div>
+        <%}%>
+
+        <div class="modalcontainer">
+        <div class="modal fade" id="incorrectLoginModal" role="dialog">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class='modalHeader'>Incorrect Login</h1>
+                </div>
+                <div class="modal-body" class="badLogin">
+                  <h4>The username or password you entered was incorrect.<h4>
+                  <h4>Please try again.<h4>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        </div>
 </body>
 </html>
 

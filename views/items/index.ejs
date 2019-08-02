@@ -8,37 +8,79 @@
         <title>Items Index Page</title>
     </head>
     <body>
+        <main>
     <header>
       <%- include ../partials/_navbar.ejs %>
+  <div class="modalcontainer">
+            <div class="modal fade" id="notloggedModal" role="dialog">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class='modalHeader'>Please Login or Register</h1>
+                </div>
+                <div class="modal-body">
+                <h4>You must be logged into an account to vote.<h4>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                
+                </div>
+            </div>
+        </div>
     </header>
 
-    <h1>Cool Stuff Index Page</h1>
+    <h1 class="title">Like or Dislike Celebrity Outfits</h1>
         <ul>
             <%items.forEach(function(item,index){ %>
-            <li>
-                <a href="/items/<%=item._id%>"><img src='<%=item.img%>'></a>             	
+            <li class='celebPhoto'>
+                <a href="/items/<%=item._id%>"><img src='<%=item.img%>'  class='celebPhoto'></a>             	
+                <%if(!session.logged){%>
                 <div class ="likedislike">
-                    <form action='/items/<%=item._id%>/addLike' method="post">
-                    <input type='submit' value="Love It"><%=item.likes.length%>
-                    </form>
-                     <form action='/items/<%=item._id%>/addDislike' method="post">
-                    <input type='submit' value="Hate It"><%=item.dislikes.length%>
-                    </form>
+                    <div class="leftButton">
+                        <div class="leftButton">
+                            <a href="#notloggedModal" class="heartButton" data-toggle="modal" ><img src="/images/redheart.png" class="heartButton"> <%=item.likes.length%></a>                     
+                        </div>
+                     </div>
+                     <div class="rightButton">
+                            <a href="#notloggedModal" class="heartButton" data-toggle="modal" ><img src="/images/blackheart.png" class="heartButton"> <%=item.dislikes.length%></a> 
+                        </form>
+                    </div>
                 </div>
+                <%}%>
+                <%if(session.logged){%>
+                <div class ="likedislike">
+                    <div class="leftButton">
+                        <form action='/items/<%=item._id%>/addLike' method="post" class='likeDislikeButtons'>
+                             <input class="heartButton" type="image" name="submit" src="/images/redheart.png" border="0" alt="Submit" /> <%=item.likes.length%>
+                       </form>
+                     </div>
+                     <div class="rightButton">
+                        <form action='/items/<%=item._id%>/addDislike' method="post" class='likeDislikeButtons'>
+                            <input class="heartButton" type="image" name="submit" src="/images/blackheart.png" border="0" alt="Submit" /> <%=item.dislikes.length%>
+                        </form>
+                    </div>
+                </div>
+                <%}%>
             </li>
             <% }) %>
         </ul>
-        <%if(session.logged) {%>
-        <nav>
-             <form action='/items/new'>
-                    <input type="submit" value="Add a new item!">
-                </form>
-        </nav>
-        <%}%>
+
+       
+    </main>
+
         
         <footer>
         <%- include ../partials/_footer.ejs %>
     </footer>
+    <%if(session.message){%>
+    <script>
+    console.log('script')
+    alert("<%=session.message.message%>")
+    </script>
+    <%}%>
+
     </body>
 
     

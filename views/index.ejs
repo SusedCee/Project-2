@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/styles/main.css">
     <link href="https://fonts.googleapis.com/css?family=Aldrich|DM+Serif+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lobster|Signika&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Adamina&display=swap" rel="stylesheet">
 
     <title>Home Page</title>
   </head>
@@ -17,26 +19,29 @@
       <img class="banner-image" src="/images/bannertwo.jpg">
     </div>
 
-      <h1>Welcome to Red Carpet</h1>
+      <h1 class="title">Welcome to The Red Carpet</h1>
       <div class="welcome">
         <p>This site gives members the opportunity to like or dislike celebrity red carpet outfits.</p><br/>
         <p>Join now to:</p>
         <p>Upload your favorite celebrity outfits (even if they are not on the red carpet).</p>
         <p>Browse what other members post. </p>
-        <p>Like or dislike other peoples' posts.</p><br/>
+        <p>Like or dislike other posts.</p><br/>
       </div>
 
       <div>
         <p class="mostleast">Most Loved and Least Loved<p>
         <div class="ranks">
-          <li></li>
-          <li></li>
+          <div class="highVote">
+            <img src="<%=highVote.img%>" class="highVoteImg">
+          </div>
+          <div class="lowVote">
+            <img src="<%=lowVote.img%>" class="lowVoteImg">
+          </div>
       </div>
       </div>
     </main>
-  </body>
-  
-  <footer>
+    <footer>
     <%- include ./partials/_footer.ejs %>
   </footer>
+  </body>
 </html>
