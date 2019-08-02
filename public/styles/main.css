@@ -1,4 +1,4 @@
-*{
+*{ 
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -53,38 +53,44 @@ nav ul li a:hover {
 nav ul li a {
 	text-decoration: none;
 	color: #fff;
-	font-size: 25px;
+	font-size: 23px;
 
 }
+
 
 #list {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	font-family: 'Josefin Sans', sans-serif;
-	font-size: 20px;
+	font-size: 25px;
 	color: black;
 	text-decoration: none;
 	list-style-type: none;
+	text-align: center;
 }
 
 #list a{
 	text-decoration: none;
 	color: #333;
-	padding:15px;
-	margin: 10px;
+	padding: 20px;
+	margin: 20px;
 }
 
 #list a:hover{
 	text-decoration: none;
 	color: #A80000;
-	padding:15px;
-	margin: 10px;
 }
 
 .registerlogin {
 	float: right;
 }
+
+/*#navContainer {
+	height: 95px;
+	border-bottom: 2px solid #A80000;
+	border-bottom-color: #A80000
+}*/
 
 footer {
 	padding: 0 20px;
@@ -99,6 +105,7 @@ footer {
 	width: 100vw;
 	justify-content: center;
 }
+
 main {
  min-height: 95vh; /* will cover the 100% of viewport */
  overflow: hidden;
@@ -110,9 +117,9 @@ main {
 	display: inline-block;
 	max-height: 350px;
 	margin: 8px;
-	border-radius: 30px
-
+	border-radius: 30px;
 }
+
 .leftButton {
 	display: inline-block;
 	margin-right: 40px;
@@ -127,7 +134,11 @@ main {
 
 .heartButton {
 	height: 30px;
-	width: 30px
+	width: 30px;
+	text-decoration: none;
+	color: black;
+	font-size: 18px;
+	font-weight:; bold
 }
 /* .likeDislikeButtons {
 	margin: 1px;
@@ -181,18 +192,15 @@ main {
 	float: right
 }
 
-/*.burger div{
-	width: 25px;
-	height: 3px;
-	background-color: white;
-	margin: 5px;
-	transition: all 0.3s ease;
-}*/
 
-@media screen and (max-width:835px) {
+@media screen and (max-width:1000px) {
 	body{
 		overflow-x: hidden;
 		cursor: pointer;
+	}
+
+	#navLinksId {
+		z-index: 999;
 	}
 	.nav-links {
 		position: absolute;
@@ -205,14 +213,12 @@ main {
 		align-items: center;
 		/* justify-content: space-around; */
 		width: 100%;
-		
 		color: white;
 	}
 	.nav-links li{
-	/*	opacity: 0;*/
 	margin: 25px;
-	/* font-size: 50px */
 	}
+
 	#navContainer {
 		height: 95px;
 		border-bottom: 2px solid #A80000;
@@ -231,6 +237,14 @@ main {
 		background-color: white;
 		margin: 8px;
 	}
+
+	.burger div{
+	width: 25px;
+	height: 3px;
+	background-color: white;
+	margin: 5px;
+	transition: all 0.3s ease;
+}
 	.nav-links li:hover {
 	cursor: pointer;
 	color: #A80000;
@@ -291,11 +305,20 @@ main {
 	justify-content: center;
 }
 
+.leastmost{
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 25px;
+	color: black;
+	display: flex;
+	justify-content: center;
+}
+
 .ranks {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	text-decoration: none;
+	flex-wrap: wrap;
 }
 
 .showing{ 
@@ -422,5 +445,4 @@ text-align: center
 .badLogin {
 	text-align: center
 }
-
 
