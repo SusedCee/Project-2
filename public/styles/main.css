@@ -269,7 +269,8 @@ main {
 	transform: translateX(0%);
 }
 #navbar {
-	height: 95px
+	height: 95px;
+	border-bottom: 4px solid #A80000
 }
 @keyframes navLinkFade{
 	from{
