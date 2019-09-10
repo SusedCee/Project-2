@@ -265,6 +265,13 @@ main {
 	}
 }
 
+.searchBar {
+	color: black
+}
+.searchBar li:hover {
+	color: black;
+	text-decoration: none
+}
 .nav-active {
 	transform: translateX(0%);
 }
